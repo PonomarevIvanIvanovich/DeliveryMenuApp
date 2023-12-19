@@ -16,6 +16,17 @@ final class ContainerViewController: UIViewController, MainScreenViewControlerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainScreenViewController()
+        setupSwipeRecognizer()
+    }
+
+    private func setupSwipeRecognizer() {
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector (self.handleSwipeGesture))
+        swipeRecognizer.direction = .left
+        leftMenuViewController.view.addGestureRecognizer(swipeRecognizer)
+    }
+
+    @objc private func handleSwipeGesture(){
+        toggleMenu()
     }
 
     private func configureMainScreenViewController() {

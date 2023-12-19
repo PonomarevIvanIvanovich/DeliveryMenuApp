@@ -15,6 +15,7 @@ protocol MainScreenViewControlerDelegate: AnyObject {
 final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
     weak var delegate: MainScreenViewControlerDelegate?
     var clouser: ((String) -> ())?
+    private var keyboardOpen = false
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -27,7 +28,7 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         contentView.backgroundColor = ColorConstants.accentColor
         return contentView
     }()
-    
+
     private let leftMenuButton: UIButton = {
         let leftMenuButton = UIButton()
         leftMenuButton.setImage(UIImage(named: "menu"), for: .normal)
@@ -39,13 +40,14 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         let deliveryLabel = UILabel()
         deliveryLabel.textColor = ColorConstants.greyText
         deliveryLabel.text = "Доставка"
+        deliveryLabel.sizeToFit()
         deliveryLabel.font = FontContants.sfRegular12
         return deliveryLabel
     }()
 
     let addressLabel: UILabel = {
         let addressLabel = UILabel()
-        addressLabel.text = "Ижевск"
+        addressLabel.text = "Пискунова,24"
         addressLabel.font = FontContants.sfRegular16
         return addressLabel
     }()
@@ -62,7 +64,7 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         let hearhButton = UIButton()
         hearhButton.layer.cornerRadius = 15
         hearhButton.backgroundColor = ColorConstants.accentBackground
-        hearhButton.setImage(UIImage(named: "love"), for: .normal)
+        hearhButton.setImage(UIImage(named: "love2"), for: .normal)
         return hearhButton
     }()
 
@@ -105,7 +107,7 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         appendPromoSection()
     }
 
-// MARK: - Setup action
+    // MARK: - Setup action
 
     private func setupTargetButton() {
         searchAddressButton.addTarget(self, action: #selector(tappedSearchAddressButton), for: .touchUpInside)
@@ -126,25 +128,15 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         present(searchAddressVC, animated: true)
     }
 
-    @objc func tappedhearhButton() {
-        print("tappedhearhButton")
+    @objc private func tappedhearhButton() {
+        print("tappedHearhButton")
     }
 
-    @objc func tappedLeftMenuButton() {
+    @objc private func tappedLeftMenuButton() {
         delegate?.toggleMenu()
     }
 
-    private func setupSearchBar() {
-        searchBar.searchBarStyle = UISearchBar.Style.minimal
-        searchBar.placeholder = "Поиcк товаров"
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = false
-        searchBar.showsScopeBar = true
-        searchBar.barTintColor = ColorConstants.accentBackground
-        searchBar.delegate = self
-    }
-
-    func setupAddress(street: String) {
+    private func setupAddress(street: String) {
         addressLabel.text = street
     }
 
@@ -155,7 +147,46 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         catalogCollectionView.set(cell: CatalogModel.fatchPromo())
     }
 
-// MARK: - Setup constraints
+    // MARK: - Setup searchBar
+
+    private func setupSearchBar() {
+        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        searchBar.placeholder = "Поиcк товаров"
+        searchBar.isTranslucent = false
+        searchBar.showsScopeBar = true
+        searchBar.barTintColor = ColorConstants.accentBackground
+        searchBar.delegate = self
+    }
+
+    private func setupTapGesture() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.singleTap(sender:))
+        )
+        keyboardOpen = !keyboardOpen
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = keyboardOpen
+        self.view.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+
+    @objc private func singleTap(sender: UITapGestureRecognizer) {
+        self.searchBar.resignFirstResponder()
+    }
+
+    func searchBarTextDidBeginEditing(_ search: UISearchBar) {
+        setupTapGesture()
+    }
+
+    func searchBarTextDidEndEditing(_ search: UISearchBar) {
+        setupTapGesture()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    // MARK: - Setup constraints
 
     private func setupUI() {
         view.backgroundColor = ColorConstants.accentColor
@@ -190,15 +221,17 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
             make.top.equalTo(deliveryLabel.snp.bottom)
             make.left.equalToSuperview().inset(65)
             make.height.equalTo(20)
-            make.width.equalTo(102)
+            make.width.lessThanOrEqualToSuperview().inset(100)
+            make.width.greaterThanOrEqualTo(100)
         }
 
         contentView.addSubview(searchAddressButton)
         searchAddressButton.snp.makeConstraints { make in
             make.centerY.equalTo(addressLabel.snp.centerY)
             make.left.equalTo(addressLabel.snp.right).inset(-6)
-            make.height.equalTo(10)
-            make.width.equalTo(12)
+            make.height.equalTo(10).priority(.required)
+            make.width.equalTo(12).priority(.required)
+            make.right.lessThanOrEqualTo(addressLabel.snp.right).inset(-18)
         }
 
         contentView.addSubview(searchBar)
@@ -218,18 +251,18 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
 
         contentView.addSubview(promoSectionCollectionView)
         promoSectionCollectionView.backgroundColor = ColorConstants.accentColor
+        promoSectionCollectionView.contentInset.left = 15
         promoSectionCollectionView.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(15)
-            make.right.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(searchBar.snp.bottom).inset(-20)
-            make.height.equalTo(80)
+            make.height.equalTo(88)
         }
-        
+
         contentView.addSubview(promoBannerCollection)
         promoBannerCollection.backgroundColor = ColorConstants.accentColor
+        promoBannerCollection.contentInset.left = 15
         promoBannerCollection.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(15)
-            make.right.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(promoSectionCollectionView.snp.bottom).inset(-20)
             make.height.equalTo(110)
         }
@@ -252,9 +285,9 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
 
         contentView.addSubview(discountProductCollectionView)
         discountProductCollectionView.backgroundColor = ColorConstants.accentColor
+        discountProductCollectionView.contentInset.left = 15
         discountProductCollectionView.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(15)
-            make.right.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(discountLabel.snp.bottom).inset(-20)
             make.height.equalTo(208)
         }

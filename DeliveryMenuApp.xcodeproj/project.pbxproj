@@ -157,11 +157,11 @@
 			children = (
 				E81FDD4E2B2A124400F95E51 /* MainScreenViewController.swift */,
 				E81FDD4D2B2A124400F95E51 /* LeftMenuViewController.swift */,
+				E81FDD462B2A124400F95E51 /* PromoBanner */,
+				E81FDD4F2B2A124400F95E51 /* DiscountProduct */,
 				E81FDD3D2B2A124400F95E51 /* Catalog */,
 				E81FDD412B2A124400F95E51 /* PromoSection */,
-				E81FDD462B2A124400F95E51 /* PromoBanner */,
 				E81FDD4A2B2A124400F95E51 /* SearchAddressBottomSheet */,
-				E81FDD4F2B2A124400F95E51 /* DiscountProduct */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

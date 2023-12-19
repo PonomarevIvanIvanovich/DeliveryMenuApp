@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 final class SearchAddressBottomSheet: UIViewController {
-    private let defaults = UserDefaults.standard
     private var networkDataFetch = NetworkDataFetcher()
     private var suggestions = [SuggestionData]()
     private let tableView: UITableView = {
@@ -27,8 +26,6 @@ final class SearchAddressBottomSheet: UIViewController {
         setupUI()
         setupSearchBar()
         setupTableView()
-        searchBar.text = defaults.string(forKey: "key")
-        postRequest(searchText: searchBar.text ?? "")
     }
 
     private func postRequest(searchText: String) {
@@ -97,10 +94,10 @@ extension SearchAddressBottomSheet: UITableViewDelegate, UITableViewDataSource {
         let address = streeString + " " + houseString
         let city = suggestions[indexPath.row].city ?? ""
         if suggestions[indexPath.row].house != nil {
-            defaults.set(city, forKey: "key")
             clouse?(address)
             dismiss(animated: true)
-        } else {
+        }
+        else {
             searchBar.text = [city, address].joined(separator: " ")
             postRequest(searchText:city + " " + address + " ")
         }
