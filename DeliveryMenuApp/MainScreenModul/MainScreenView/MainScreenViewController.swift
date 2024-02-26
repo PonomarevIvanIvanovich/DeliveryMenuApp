@@ -8,13 +8,8 @@
 import UIKit
 import SnapKit
 
-protocol MainScreenViewControlerDelegate: AnyObject {
-    func toggleMenu()
-}
-
-final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
-    weak var delegate: MainScreenViewControlerDelegate?
-    var clouser: ((String) -> ())?
+final class MainScreenViewControler: UIViewController, UISearchBarDelegate, AddressDelegate, MainScreenViewProtocol {
+    var presenter: MainScreenPresenterProtocol?
     private var keyboardOpen = false
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -68,8 +63,8 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         return hearhButton
     }()
 
-    private let promoSectionCollectionView = PromoSectionCollectionView()
-    private let promoBannerCollection = PromoBannerCollection()
+    let promoSectionCollectionView = PromoSectionCollectionView()
+    let promoBannerCollection = PromoBannerCollection()
 
     private let discountLabel: UILabel = {
         let discountLabel = UILabel()
@@ -88,7 +83,7 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         return lookButton
     }()
 
-    private let discountProductCollectionView = DiscountProductCollectionView()
+    let discountProductCollectionView = DiscountProductCollectionView()
 
     private let catalogLabel: UILabel = {
         let catalogLabel = UILabel()
@@ -97,7 +92,7 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         return catalogLabel
     }()
 
-    private let catalogCollectionView = CatalogCollectionView()
+    let catalogCollectionView = CatalogCollectionView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +100,11 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         setupSearchBar()
         setupTargetButton()
         appendPromoSection()
+        setupScrollView()
+    }
+
+    func addressCollect(address: String) {
+        addressLabel.text = address
     }
 
     // MARK: - Setup action
@@ -116,35 +116,25 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
     }
 
     @objc func tappedSearchAddressButton() {
-        let searchAddressVC = SearchAddressBottomSheet()
-        searchAddressVC.clouse = { [weak self] address in
-            self?.addressLabel.text = address
-        }
-        if let sheet = searchAddressVC.sheetPresentationController {
-            sheet.prefersGrabberVisible = true
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-            sheet.detents = [.large()]
-        }
-        present(searchAddressVC, animated: true)
+        presenter?.openSearchScreen()
     }
 
     @objc private func tappedhearhButton() {
-        print("tappedHearhButton")
+        presenter?.tappedHearhButton()
     }
 
     @objc private func tappedLeftMenuButton() {
-        delegate?.toggleMenu()
+        presenter?.openSideMenu()
     }
 
-    private func setupAddress(street: String) {
-        addressLabel.text = street
+    // MARK: - Setup Screen Elements
+
+    private func setupScrollView() {
+        scrollView.delegate = self
     }
 
     private func appendPromoSection() {
-        promoSectionCollectionView.set(cell: PromoSectionModel.fatchPromo())
-        promoBannerCollection.set(cell: PromoBannerModel.fatchPromo())
-        discountProductCollectionView.set(cell: DiscountProductModel.fatchPromo())
-        catalogCollectionView.set(cell: CatalogModel.fatchPromo())
+        presenter?.setModel()
     }
 
     // MARK: - Setup searchBar
@@ -221,7 +211,7 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
             make.top.equalTo(deliveryLabel.snp.bottom)
             make.left.equalToSuperview().inset(65)
             make.height.equalTo(20)
-            make.width.lessThanOrEqualToSuperview().inset(100)
+            make.width.lessThanOrEqualToSuperview().inset(50)
             make.width.greaterThanOrEqualTo(100)
         }
 
@@ -229,8 +219,8 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
         searchAddressButton.snp.makeConstraints { make in
             make.centerY.equalTo(addressLabel.snp.centerY)
             make.left.equalTo(addressLabel.snp.right).inset(-6)
-            make.height.equalTo(10).priority(.required)
-            make.width.equalTo(12).priority(.required)
+            make.height.equalTo(10)
+            make.width.equalTo(12)
             make.right.lessThanOrEqualTo(addressLabel.snp.right).inset(-18)
         }
 
@@ -308,6 +298,19 @@ final class MainScreenViewControler: UIViewController, UISearchBarDelegate {
             make.height.equalTo(440)
             make.bottom.equalToSuperview()
         }
+    }
+}
+
+extension MainScreenViewControler: UIScrollViewDelegate {
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.setupTapGesture()
+        self.searchBar.resignFirstResponder()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.setupTapGesture()
+        self.searchBar.resignFirstResponder()
     }
 }
 

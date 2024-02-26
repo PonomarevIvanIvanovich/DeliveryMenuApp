@@ -8,20 +8,19 @@
 import Foundation
 
 protocol NetworkDataFetcherLogic {
-    func fetchAddres(searchTerm: String, completion: @escaping(AddresResultModel?) -> ())
+    func fetchAddres(searchTerm: String, completion: @escaping (Result<AddresResultModel?, Error>) -> ())
 }
 
 final class NetworkDataFetcher: NetworkDataFetcherLogic {
     private let queryCreator = ServiceSuggestion()
 
-    func fetchAddres(searchTerm: String, completion: @escaping(AddresResultModel?) -> ()) {
+    func fetchAddres(searchTerm: String, completion: @escaping (Result<AddresResultModel?, Error>) -> ()) {
         queryCreator.createRequest(search: searchTerm, completion: { data, error in
             if let error = error {
-                print("Error received request data: \(error.localizedDescription)")
-                completion(nil)
+                completion(.failure(error))
             }
             let decode = self.decodeJSONE( type: AddresResultModel.self, from: data)
-            completion(decode)
+            completion(.success(decode))
         })
     }
 

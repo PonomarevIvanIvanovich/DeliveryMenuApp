@@ -58,7 +58,6 @@ struct CatalogModel {
             title: "Напитки",
             color: UIColor(red: 1, green: 0.833, blue: 0.678, alpha: 1)
         )
-
         return [firstItem, secondItem, thirdItem, fourthItem, fifthItem, sixthItem, seventhItem, eighthItem, ninthItem]
     }
 }

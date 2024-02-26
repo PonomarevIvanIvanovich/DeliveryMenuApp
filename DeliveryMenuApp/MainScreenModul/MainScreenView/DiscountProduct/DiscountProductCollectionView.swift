@@ -1,73 +1,74 @@
 //
-//  CatalogCollectionView.swift
+//  DiscountProductCollectionView.swift
 //  Restaurant
 //
-//  Created by Иван Пономарев on 27.01.2023.
+//  Created by Иван Пономарев on 26.01.2023.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-final class CatalogCollectionView: UICollectionView {
-    private var cellArray = [CatalogModel]()
+final class DiscountProductCollectionView: UICollectionView {
+    private var cellArray = [DiscountProductModel]()
 
     init() {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        setupCatalogCollectionView()
-    }
+        setupDiscountProductCollectionView()
 
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupCatalogCollectionView() {
-        register(CatalogCell.self, forCellWithReuseIdentifier: CatalogCell.identyfier)
+    private func setupDiscountProductCollectionView() {
+        register(DiscountProductCell.self, forCellWithReuseIdentifier: DiscountProductCell.identyfier)
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
         delegate = self
         dataSource = self
-        isScrollEnabled = false
     }
 
-    func set(cell: [CatalogModel]) {
+    func set(cell: [DiscountProductModel]) {
         self.cellArray = cell
     }
 }
 
 //MARK: - UICollectionViewDelegate
 
-extension CatalogCollectionView: UICollectionViewDelegate {
+extension DiscountProductCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped catalog")
+        print(cellArray[indexPath.row].titleLabel ?? "tapped discount product")
     }
 }
 
 //MARK: - UICollectionViewDataSource
 
-extension CatalogCollectionView: UICollectionViewDataSource {
+extension DiscountProductCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cellArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CatalogCell.identyfier,
+            withReuseIdentifier: DiscountProductCell.identyfier,
             for: indexPath
-        ) as? CatalogCell else {
+        ) as? DiscountProductCell else {
             return UICollectionViewCell()
         }
-        cell.configureCell(model: cellArray[indexPath.row])
+        cell.configCell(model: cellArray[indexPath.row])
         return cell
     }
 }
 
 //MARK: - UICollectionViewDataSource
 
-extension CatalogCollectionView: UICollectionViewDelegateFlowLayout {
+extension DiscountProductCollectionView: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 3 - 8) , height: 135)
+        return CGSize(width: 102 , height: collectionView.frame.height)
     }
 }
-

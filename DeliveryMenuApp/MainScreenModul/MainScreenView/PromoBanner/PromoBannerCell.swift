@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class PromoBannerCell: UICollectionViewCell {
-    static let identyfier = "PromoBannerCell"
+    static let identyfier = "PromoBannerCellIdentyfier"
 
     private let promoImage: UIImageView = {
         let sectionImage = UIImageView()

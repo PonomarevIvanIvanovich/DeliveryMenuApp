@@ -8,27 +8,30 @@
 import Foundation
 import UIKit
 
+protocol SideMenuViewProtocol: AnyObject {
+    var presenter: SideMenuPresenterProtocol? { get set }
+    func reloadCell()
+    func userSetup(user: UserModel)
+}
+
 final class LeftMenuViewController: UIViewController {
-    let cellArray = ["Мои адреса", "Мои заказы", "Избранное", "Новости", "Купоны", "О нас", "Пригласить друзей", "Настройки"]
+    var presenter: SideMenuPresenterProtocol?
 
     private let avatarImage: UIImageView = {
         let avatarImage = UIImageView()
         avatarImage.clipsToBounds = true
         avatarImage.layer.cornerRadius = 30
-        avatarImage.image = UIImage(named: "avatar")
         return avatarImage
     }()
 
     private let nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "Иван Иванов"
         nameLabel.font = FontContants.sfPromedium16
         return nameLabel
     }()
 
     private let numberLabel: UILabel = {
         let numberLabel = UILabel()
-        numberLabel.text = "+7-912 011-11-33"
         numberLabel.font = FontContants.sfRegular16
         return numberLabel
     }()
@@ -79,6 +82,16 @@ final class LeftMenuViewController: UIViewController {
         setupConnectButton()
         setupUI()
         setupMenuTableView()
+        getCell()
+        getUser()
+    }
+
+    func getUser() {
+        presenter?.getUser()
+    }
+
+    func getCell() {
+        presenter?.getModel()
     }
 
     private func setupConnectButton() {
@@ -147,10 +160,17 @@ final class LeftMenuViewController: UIViewController {
             make.height.equalTo(20)
         }
 
+        view.addSubview(connectButton)
+        connectButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(45)
+            make.height.width.equalTo(52)
+        }
+
         view.addSubview(connectionLabel)
         connectionLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(50)
-            make.right.equalToSuperview().inset(150)
+            make.left.equalTo(connectButton.snp.right).inset(-8)
             make.height.equalTo(40)
             make.width.equalTo(100)
         }
@@ -159,14 +179,7 @@ final class LeftMenuViewController: UIViewController {
         menuTableView.snp.makeConstraints { make in
             make.top.equalTo(cartNumberlabel.snp.bottom).inset(-15)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(connectionLabel.snp.top)
-        }
-
-        view.addSubview(connectButton)
-        connectButton.snp.makeConstraints { make in
-            make.right.equalTo(connectionLabel.snp.left).inset(-15)
-            make.bottom.equalToSuperview().inset(45)
-            make.height.width.equalTo(52)
+            make.bottom.equalTo(connectionLabel.snp.top).inset(-10)
         }
     }
 }
@@ -175,12 +188,28 @@ final class LeftMenuViewController: UIViewController {
 
 extension LeftMenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cellArray.count
+        presenter?.cellArray?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = cellArray[indexPath.row]
+        cell.textLabel?.text = presenter?.cellArray?[indexPath.row]
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(presenter?.cellArray?[indexPath.row] ?? "")
+    }
+}
+
+extension LeftMenuViewController: SideMenuViewProtocol {
+    func userSetup(user: UserModel) {
+        avatarImage.image = user.avatar
+        numberLabel.text = user.numberPhone
+        nameLabel.text = user.name
+    }
+    
+    func reloadCell() {
+        menuTableView.reloadData()
     }
 }

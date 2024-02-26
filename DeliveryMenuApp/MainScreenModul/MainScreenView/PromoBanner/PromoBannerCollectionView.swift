@@ -38,7 +38,7 @@ final class PromoBannerCollection: UICollectionView {
 
 extension PromoBannerCollection: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped promo banner")
+        print(cellArray[indexPath.row].titleLabel ?? "tapped promo banner")
     }
 }
 

@@ -1,72 +1,73 @@
 //
-//  PromoSectionCollectionView.swift
+//  CatalogCollectionView.swift
 //  Restaurant
 //
-//  Created by Иван Пономарев on 25.01.2023.
+//  Created by Иван Пономарев on 27.01.2023.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-final class PromoSectionCollectionView: UICollectionView {
-    private var modelPromoSectionArray = [PromoSectionModel]()
-    
+final class CatalogCollectionView: UICollectionView {
+    private var cellArray = [CatalogModel]()
+
     init() {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        setupPromoCollectionView()
+        setupCatalogCollectionView()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupPromoCollectionView() {
-        backgroundColor = #colorLiteral(red: 0.9589126706, green: 0.9690223336, blue: 0.9815708995, alpha: 1)
-        register(PromoSectionCell.self, forCellWithReuseIdentifier: PromoSectionCell.identyfier)
+    private func setupCatalogCollectionView() {
+        register(CatalogCell.self, forCellWithReuseIdentifier: CatalogCell.identyfier)
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
         delegate = self
         dataSource = self
+        isScrollEnabled = false
     }
 
-    func set(cell: [PromoSectionModel]) {
-        self.modelPromoSectionArray = cell
+    func set(cell: [CatalogModel]) {
+        self.cellArray = cell
     }
 }
+
 //MARK: - UICollectionViewDelegate
 
-extension PromoSectionCollectionView: UICollectionViewDelegate {
+extension CatalogCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped promo section")
+        print(cellArray[indexPath.row].title)
     }
 }
 
 //MARK: - UICollectionViewDataSource
 
-extension PromoSectionCollectionView: UICollectionViewDataSource {
+extension CatalogCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        modelPromoSectionArray.count
+        cellArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: PromoSectionCell.identyfier,
+            withReuseIdentifier: CatalogCell.identyfier,
             for: indexPath
-        ) as? PromoSectionCell else {
+        ) as? CatalogCell else {
             return UICollectionViewCell()
         }
-        cell.configCell(model: modelPromoSectionArray[indexPath.row])
+        cell.configureCell(model: cellArray[indexPath.row])
         return cell
     }
 }
 
 //MARK: - UICollectionViewDataSource
 
-extension PromoSectionCollectionView: UICollectionViewDelegateFlowLayout {
+extension CatalogCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: collectionView.frame.height)
+        return CGSize(width: (collectionView.frame.width / 3 - 8) , height: 135)
     }
 }
+

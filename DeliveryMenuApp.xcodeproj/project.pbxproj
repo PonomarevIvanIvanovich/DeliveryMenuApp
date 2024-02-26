@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E809450A2B628B7F0070AF78 /* SearchScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80945092B628B7F0070AF78 /* SearchScreenRouter.swift */; };
+		E809450E2B664E610070AF78 /* MainRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809450D2B664E610070AF78 /* MainRouterProtocol.swift */; };
+		E80945122B6791AF0070AF78 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80945112B6791AF0070AF78 /* SideMenuModel.swift */; };
+		E80945142B6798DF0070AF78 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80945132B6798DF0070AF78 /* UserModel.swift */; };
+		E80945202B6BD48D0070AF78 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = E809451F2B6BD48D0070AF78 /* PanModal */; };
 		E81FDD172B2A11F300F95E51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FDD162B2A11F300F95E51 /* AppDelegate.swift */; };
 		E81FDD192B2A11F300F95E51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FDD182B2A11F300F95E51 /* SceneDelegate.swift */; };
 		E81FDD232B2A11F400F95E51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81FDD212B2A11F400F95E51 /* LaunchScreen.storyboard */; };
-		E81FDD2B2B2A123800F95E51 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FDD2A2B2A123800F95E51 /* ContainerViewController.swift */; };
 		E81FDD352B2A123E00F95E51 /* FontContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FDD2D2B2A123E00F95E51 /* FontContants.swift */; };
 		E81FDD362B2A123E00F95E51 /* SFProDisplay-Medium.OTF in Resources */ = {isa = PBXBuildFile; fileRef = E81FDD2F2B2A123E00F95E51 /* SFProDisplay-Medium.OTF */; };
 		E81FDD372B2A123E00F95E51 /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E81FDD302B2A123E00F95E51 /* roboto-regular.ttf */; };
@@ -41,17 +45,29 @@
 		E81FDD722B2A127D00F95E51 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E81FDD712B2A127D00F95E51 /* SnapKit */; };
 		E81FDD742B2A127D00F95E51 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E81FDD732B2A127D00F95E51 /* SnapKit-Dynamic */; };
 		E86F44FD2B2A147B00F4A35E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86F44FC2B2A147B00F4A35E /* Assets.xcassets */; };
+		E8DABD2F2B61290600E4D489 /* SideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD2E2B61290600E4D489 /* SideMenuPresenter.swift */; };
+		E8DABD312B61294E00E4D489 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD302B61294E00E4D489 /* MainScreenPresenter.swift */; };
+		E8DABD332B6131A100E4D489 /* AssemblyBuilderMainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD322B6131A100E4D489 /* AssemblyBuilderMainScreen.swift */; };
+		E8DABD352B61327200E4D489 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD342B61327200E4D489 /* MainScreenRouter.swift */; };
+		E8DABD372B6138EC00E4D489 /* SideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD362B6138EC00E4D489 /* SideMenuRouter.swift */; };
+		E8DABD392B613AE600E4D489 /* AsseblyBuilderSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD382B613AE600E4D489 /* AsseblyBuilderSideMenu.swift */; };
+		E8DABD3B2B615B1C00E4D489 /* SearchScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD3A2B615B1C00E4D489 /* SearchScreenPresenter.swift */; };
+		E8DABD3D2B615C1600E4D489 /* SearchScreenAssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DABD3C2B615C1600E4D489 /* SearchScreenAssemblyBuilder.swift */; };
+		E8DABD402B62798700E4D489 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = E8DABD3F2B62798700E4D489 /* SideMenu */; };
 		E8EC633E2B2C69400012D7F1 /* TimerNsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC633D2B2C69400012D7F1 /* TimerNsObject.swift */; };
 		E8EC63402B2C69900012D7F1 /* ExstensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC633F2B2C69900012D7F1 /* ExstensionString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E80945092B628B7F0070AF78 /* SearchScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenRouter.swift; sourceTree = "<group>"; };
+		E809450D2B664E610070AF78 /* MainRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouterProtocol.swift; sourceTree = "<group>"; };
+		E80945112B6791AF0070AF78 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
+		E80945132B6798DF0070AF78 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E81FDD132B2A11F300F95E51 /* DeliveryMenuApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryMenuApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81FDD162B2A11F300F95E51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E81FDD182B2A11F300F95E51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E81FDD222B2A11F400F95E51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E81FDD242B2A11F400F95E51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E81FDD2A2B2A123800F95E51 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		E81FDD2D2B2A123E00F95E51 /* FontContants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontContants.swift; sourceTree = "<group>"; };
 		E81FDD2F2B2A123E00F95E51 /* SFProDisplay-Medium.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.OTF"; sourceTree = "<group>"; };
 		E81FDD302B2A123E00F95E51 /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
@@ -79,6 +95,14 @@
 		E81FDD662B2A124900F95E51 /* AddresResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddresResultModel.swift; sourceTree = "<group>"; };
 		E81FDD672B2A124900F95E51 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		E86F44FC2B2A147B00F4A35E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8DABD2E2B61290600E4D489 /* SideMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuPresenter.swift; sourceTree = "<group>"; };
+		E8DABD302B61294E00E4D489 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		E8DABD322B6131A100E4D489 /* AssemblyBuilderMainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilderMainScreen.swift; sourceTree = "<group>"; };
+		E8DABD342B61327200E4D489 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
+		E8DABD362B6138EC00E4D489 /* SideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRouter.swift; sourceTree = "<group>"; };
+		E8DABD382B613AE600E4D489 /* AsseblyBuilderSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsseblyBuilderSideMenu.swift; sourceTree = "<group>"; };
+		E8DABD3A2B615B1C00E4D489 /* SearchScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenPresenter.swift; sourceTree = "<group>"; };
+		E8DABD3C2B615C1600E4D489 /* SearchScreenAssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenAssemblyBuilder.swift; sourceTree = "<group>"; };
 		E8EC633D2B2C69400012D7F1 /* TimerNsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNsObject.swift; sourceTree = "<group>"; };
 		E8EC633F2B2C69900012D7F1 /* ExstensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExstensionString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,13 +114,23 @@
 			files = (
 				E81FDD6F2B2A126600F95E51 /* Alamofire in Frameworks */,
 				E81FDD722B2A127D00F95E51 /* SnapKit in Frameworks */,
+				E8DABD402B62798700E4D489 /* SideMenu in Frameworks */,
 				E81FDD742B2A127D00F95E51 /* SnapKit-Dynamic in Frameworks */,
+				E80945202B6BD48D0070AF78 /* PanModal in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E809450C2B664E3E0070AF78 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E809450D2B664E610070AF78 /* MainRouterProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		E81FDD0A2B2A11F300F95E51 = {
 			isa = PBXGroup;
 			children = (
@@ -118,11 +152,13 @@
 			children = (
 				E81FDD162B2A11F300F95E51 /* AppDelegate.swift */,
 				E81FDD182B2A11F300F95E51 /* SceneDelegate.swift */,
-				E81FDD2A2B2A123800F95E51 /* ContainerViewController.swift */,
-				E81FDD642B2A124900F95E51 /* Network */,
-				E81FDD2C2B2A123E00F95E51 /* Managers */,
-				E81FDD3C2B2A124400F95E51 /* Screens */,
+				E8DABD212B61272C00E4D489 /* MainScreenModul */,
+				E8DABD222B61274100E4D489 /* SideMenuModul */,
+				E8DABD232B61276800E4D489 /* SearchScreenModul */,
+				E81FDD642B2A124900F95E51 /* ServiceLayer */,
+				E809450C2B664E3E0070AF78 /* Protocols */,
 				E8EC633C2B2C691B0012D7F1 /* Exstension */,
+				E81FDD2C2B2A123E00F95E51 /* Managers */,
 				E86F44FC2B2A147B00F4A35E /* Assets.xcassets */,
 				E81FDD212B2A11F400F95E51 /* LaunchScreen.storyboard */,
 				E81FDD242B2A11F400F95E51 /* Info.plist */,
@@ -152,24 +188,9 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		E81FDD3C2B2A124400F95E51 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				E81FDD4E2B2A124400F95E51 /* MainScreenViewController.swift */,
-				E81FDD4D2B2A124400F95E51 /* LeftMenuViewController.swift */,
-				E81FDD462B2A124400F95E51 /* PromoBanner */,
-				E81FDD4F2B2A124400F95E51 /* DiscountProduct */,
-				E81FDD3D2B2A124400F95E51 /* Catalog */,
-				E81FDD412B2A124400F95E51 /* PromoSection */,
-				E81FDD4A2B2A124400F95E51 /* SearchAddressBottomSheet */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		E81FDD3D2B2A124400F95E51 /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				E81FDD3E2B2A124400F95E51 /* CatalogModel.swift */,
 				E81FDD3F2B2A124400F95E51 /* CatalogCell.swift */,
 				E81FDD402B2A124400F95E51 /* CatalogCollectionView.swift */,
 			);
@@ -181,7 +202,6 @@
 			children = (
 				E81FDD452B2A124400F95E51 /* PromoSectionCollectionView.swift */,
 				E81FDD432B2A124400F95E51 /* PromoSectionCell.swift */,
-				E81FDD422B2A124400F95E51 /* PromoSectionModel.swift */,
 			);
 			path = PromoSection;
 			sourceTree = "<group>";
@@ -191,38 +211,143 @@
 			children = (
 				E81FDD492B2A124400F95E51 /* PromoBannerCollectionView.swift */,
 				E81FDD472B2A124400F95E51 /* PromoBannerCell.swift */,
-				E81FDD482B2A124400F95E51 /* PromoBannerModel.swift */,
 			);
 			path = PromoBanner;
-			sourceTree = "<group>";
-		};
-		E81FDD4A2B2A124400F95E51 /* SearchAddressBottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				E81FDD4B2B2A124400F95E51 /* SearchAddressCell.swift */,
-				E81FDD4C2B2A124400F95E51 /* SearchAddressBottomSheet.swift */,
-			);
-			path = SearchAddressBottomSheet;
 			sourceTree = "<group>";
 		};
 		E81FDD4F2B2A124400F95E51 /* DiscountProduct */ = {
 			isa = PBXGroup;
 			children = (
 				E81FDD502B2A124400F95E51 /* DiscountProductCell.swift */,
-				E81FDD512B2A124400F95E51 /* DiscountProductModel.swift */,
 				E81FDD522B2A124400F95E51 /* DiscountProductCollectionView.swift */,
 			);
 			path = DiscountProduct;
 			sourceTree = "<group>";
 		};
-		E81FDD642B2A124900F95E51 /* Network */ = {
+		E81FDD642B2A124900F95E51 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
 				E81FDD652B2A124900F95E51 /* ServiceSuggestion.swift */,
-				E81FDD662B2A124900F95E51 /* AddresResultModel.swift */,
 				E81FDD672B2A124900F95E51 /* NetworkDataFetcher.swift */,
 			);
-			path = Network;
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		E8DABD212B61272C00E4D489 /* MainScreenModul */ = {
+			isa = PBXGroup;
+			children = (
+				E8DABD2D2B61284500E4D489 /* MainScreenModel */,
+				E8DABD2C2B61283600E4D489 /* MainScreenView */,
+				E8DABD2B2B61282700E4D489 /* MainScreenPresenter */,
+				E8DABD322B6131A100E4D489 /* AssemblyBuilderMainScreen.swift */,
+				E8DABD342B61327200E4D489 /* MainScreenRouter.swift */,
+			);
+			path = MainScreenModul;
+			sourceTree = "<group>";
+		};
+		E8DABD222B61274100E4D489 /* SideMenuModul */ = {
+			isa = PBXGroup;
+			children = (
+				E8DABD272B6127E300E4D489 /* SideMenuPresenter */,
+				E8DABD282B6127F100E4D489 /* SideMenuView */,
+				E8DABD292B6127FB00E4D489 /* SideMenuModel */,
+				E8DABD362B6138EC00E4D489 /* SideMenuRouter.swift */,
+				E8DABD382B613AE600E4D489 /* AsseblyBuilderSideMenu.swift */,
+			);
+			path = SideMenuModul;
+			sourceTree = "<group>";
+		};
+		E8DABD232B61276800E4D489 /* SearchScreenModul */ = {
+			isa = PBXGroup;
+			children = (
+				E8DABD262B6127C600E4D489 /* SearchScreenModel */,
+				E8DABD252B6127A600E4D489 /* SearchScreenView */,
+				E8DABD242B61278300E4D489 /* SearchScreenPresenter */,
+				E8DABD3C2B615C1600E4D489 /* SearchScreenAssemblyBuilder.swift */,
+			);
+			path = SearchScreenModul;
+			sourceTree = "<group>";
+		};
+		E8DABD242B61278300E4D489 /* SearchScreenPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				E8DABD3A2B615B1C00E4D489 /* SearchScreenPresenter.swift */,
+			);
+			path = SearchScreenPresenter;
+			sourceTree = "<group>";
+		};
+		E8DABD252B6127A600E4D489 /* SearchScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				E81FDD4C2B2A124400F95E51 /* SearchAddressBottomSheet.swift */,
+				E81FDD4B2B2A124400F95E51 /* SearchAddressCell.swift */,
+				E80945092B628B7F0070AF78 /* SearchScreenRouter.swift */,
+			);
+			path = SearchScreenView;
+			sourceTree = "<group>";
+		};
+		E8DABD262B6127C600E4D489 /* SearchScreenModel */ = {
+			isa = PBXGroup;
+			children = (
+				E81FDD662B2A124900F95E51 /* AddresResultModel.swift */,
+			);
+			path = SearchScreenModel;
+			sourceTree = "<group>";
+		};
+		E8DABD272B6127E300E4D489 /* SideMenuPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				E8DABD2E2B61290600E4D489 /* SideMenuPresenter.swift */,
+			);
+			path = SideMenuPresenter;
+			sourceTree = "<group>";
+		};
+		E8DABD282B6127F100E4D489 /* SideMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				E81FDD4D2B2A124400F95E51 /* LeftMenuViewController.swift */,
+			);
+			path = SideMenuView;
+			sourceTree = "<group>";
+		};
+		E8DABD292B6127FB00E4D489 /* SideMenuModel */ = {
+			isa = PBXGroup;
+			children = (
+				E80945112B6791AF0070AF78 /* SideMenuModel.swift */,
+				E80945132B6798DF0070AF78 /* UserModel.swift */,
+			);
+			path = SideMenuModel;
+			sourceTree = "<group>";
+		};
+		E8DABD2B2B61282700E4D489 /* MainScreenPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				E8DABD302B61294E00E4D489 /* MainScreenPresenter.swift */,
+			);
+			path = MainScreenPresenter;
+			sourceTree = "<group>";
+		};
+		E8DABD2C2B61283600E4D489 /* MainScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				E81FDD4E2B2A124400F95E51 /* MainScreenViewController.swift */,
+				E81FDD462B2A124400F95E51 /* PromoBanner */,
+				E81FDD4F2B2A124400F95E51 /* DiscountProduct */,
+				E81FDD3D2B2A124400F95E51 /* Catalog */,
+				E81FDD412B2A124400F95E51 /* PromoSection */,
+			);
+			path = MainScreenView;
+			sourceTree = "<group>";
+		};
+		E8DABD2D2B61284500E4D489 /* MainScreenModel */ = {
+			isa = PBXGroup;
+			children = (
+				E81FDD482B2A124400F95E51 /* PromoBannerModel.swift */,
+				E81FDD512B2A124400F95E51 /* DiscountProductModel.swift */,
+				E81FDD3E2B2A124400F95E51 /* CatalogModel.swift */,
+				E81FDD422B2A124400F95E51 /* PromoSectionModel.swift */,
+			);
+			path = MainScreenModel;
 			sourceTree = "<group>";
 		};
 		E8EC633C2B2C691B0012D7F1 /* Exstension */ = {
@@ -254,6 +379,8 @@
 				E81FDD6E2B2A126600F95E51 /* Alamofire */,
 				E81FDD712B2A127D00F95E51 /* SnapKit */,
 				E81FDD732B2A127D00F95E51 /* SnapKit-Dynamic */,
+				E8DABD3F2B62798700E4D489 /* SideMenu */,
+				E809451F2B6BD48D0070AF78 /* PanModal */,
 			);
 			productName = DeliveryMenuApp;
 			productReference = E81FDD132B2A11F300F95E51 /* DeliveryMenuApp.app */;
@@ -286,6 +413,8 @@
 			packageReferences = (
 				E81FDD6D2B2A126600F95E51 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				E81FDD702B2A127D00F95E51 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E8DABD3E2B62798700E4D489 /* XCRemoteSwiftPackageReference "SideMenu" */,
+				E809451E2B6BD48D0070AF78 /* XCRemoteSwiftPackageReference "PanModal" */,
 			);
 			productRefGroup = E81FDD142B2A11F300F95E51 /* Products */;
 			projectDirPath = "";
@@ -319,13 +448,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				E81FDD552B2A124400F95E51 /* CatalogCollectionView.swift in Sources */,
+				E809450A2B628B7F0070AF78 /* SearchScreenRouter.swift in Sources */,
 				E81FDD572B2A124400F95E51 /* PromoSectionCell.swift in Sources */,
 				E81FDD5E2B2A124400F95E51 /* SearchAddressBottomSheet.swift in Sources */,
+				E8DABD352B61327200E4D489 /* MainScreenRouter.swift in Sources */,
+				E8DABD2F2B61290600E4D489 /* SideMenuPresenter.swift in Sources */,
 				E81FDD172B2A11F300F95E51 /* AppDelegate.swift in Sources */,
+				E80945142B6798DF0070AF78 /* UserModel.swift in Sources */,
+				E8DABD3B2B615B1C00E4D489 /* SearchScreenPresenter.swift in Sources */,
+				E8DABD3D2B615C1600E4D489 /* SearchScreenAssemblyBuilder.swift in Sources */,
+				E8DABD332B6131A100E4D489 /* AssemblyBuilderMainScreen.swift in Sources */,
 				E81FDD5C2B2A124400F95E51 /* PromoBannerCollectionView.swift in Sources */,
 				E81FDD692B2A124900F95E51 /* AddresResultModel.swift in Sources */,
 				E81FDD562B2A124400F95E51 /* PromoSectionModel.swift in Sources */,
+				E80945122B6791AF0070AF78 /* SideMenuModel.swift in Sources */,
 				E81FDD612B2A124400F95E51 /* DiscountProductCell.swift in Sources */,
+				E8DABD392B613AE600E4D489 /* AsseblyBuilderSideMenu.swift in Sources */,
+				E8DABD312B61294E00E4D489 /* MainScreenPresenter.swift in Sources */,
 				E81FDD682B2A124900F95E51 /* ServiceSuggestion.swift in Sources */,
 				E81FDD6A2B2A124900F95E51 /* NetworkDataFetcher.swift in Sources */,
 				E81FDD3B2B2A123E00F95E51 /* ColorConstants.swift in Sources */,
@@ -334,14 +473,15 @@
 				E81FDD542B2A124400F95E51 /* CatalogCell.swift in Sources */,
 				E81FDD602B2A124400F95E51 /* MainScreenViewController.swift in Sources */,
 				E81FDD622B2A124400F95E51 /* DiscountProductModel.swift in Sources */,
-				E81FDD2B2B2A123800F95E51 /* ContainerViewController.swift in Sources */,
 				E81FDD632B2A124400F95E51 /* DiscountProductCollectionView.swift in Sources */,
 				E8EC63402B2C69900012D7F1 /* ExstensionString.swift in Sources */,
+				E8DABD372B6138EC00E4D489 /* SideMenuRouter.swift in Sources */,
 				E81FDD592B2A124400F95E51 /* PromoSectionCollectionView.swift in Sources */,
 				E8EC633E2B2C69400012D7F1 /* TimerNsObject.swift in Sources */,
 				E81FDD532B2A124400F95E51 /* CatalogModel.swift in Sources */,
 				E81FDD5F2B2A124400F95E51 /* LeftMenuViewController.swift in Sources */,
 				E81FDD352B2A123E00F95E51 /* FontContants.swift in Sources */,
+				E809450E2B664E610070AF78 /* MainRouterProtocol.swift in Sources */,
 				E81FDD5D2B2A124400F95E51 /* SearchAddressCell.swift in Sources */,
 				E81FDD192B2A11F300F95E51 /* SceneDelegate.swift in Sources */,
 			);
@@ -558,6 +698,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E809451E2B6BD48D0070AF78 /* XCRemoteSwiftPackageReference "PanModal" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/slackhq/PanModal";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.7;
+			};
+		};
 		E81FDD6D2B2A126600F95E51 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -574,9 +722,22 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		E8DABD3E2B62798700E4D489 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E809451F2B6BD48D0070AF78 /* PanModal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E809451E2B6BD48D0070AF78 /* XCRemoteSwiftPackageReference "PanModal" */;
+			productName = PanModal;
+		};
 		E81FDD6E2B2A126600F95E51 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E81FDD6D2B2A126600F95E51 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -591,6 +752,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E81FDD702B2A127D00F95E51 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		E8DABD3F2B62798700E4D489 /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8DABD3E2B62798700E4D489 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

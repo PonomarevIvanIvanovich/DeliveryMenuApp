@@ -5,19 +5,27 @@
 //  Created by Иван Пономарев on 25.01.2023.
 //
 
-import Foundation
 import UIKit
 import SnapKit
+import PanModal
 
-final class SearchAddressBottomSheet: UIViewController {
+protocol SearchScreenViewProtocol: AnyObject {
+    func success()
+    func falture(error: Error)
+}
+
+protocol AddressDelegate: AnyObject {
+    func addressCollect(address: String)
+}
+
+final class SearchAddressBottomSheet: UIViewController, PanModalPresentable {
+    weak var delegate: AddressDelegate?
+    var presenter: SearchScreenPresenterProtocol?
     private var networkDataFetch = NetworkDataFetcher()
-    private var suggestions = [SuggestionData]()
     private let tableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
-
-    var clouse: ((String) -> ())?
 
     lazy var searchBar:UISearchBar = UISearchBar()
 
@@ -28,16 +36,12 @@ final class SearchAddressBottomSheet: UIViewController {
         setupTableView()
     }
 
-    private func postRequest(searchText: String) {
-        networkDataFetch.fetchAddres(searchTerm: searchText) { result in
-            guard let result = result else { return }
-            let suggestions = result.suggestions.map { $0.data }
-            self.suggestions = suggestions.filter{ $0.street_with_type != nil }
-            self.tableView.reloadData()
-        }
-    }
-
     private func setupTableView() {
+        if let sheet = self.sheetPresentationController {
+            sheet.prefersGrabberVisible = true
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+            sheet.detents = [.large()]
+        }
         tableView.rowHeight = 50
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -74,7 +78,7 @@ final class SearchAddressBottomSheet: UIViewController {
 
 extension SearchAddressBottomSheet: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        suggestions.count
+        presenter?.suggestions.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,22 +88,25 @@ extension SearchAddressBottomSheet: UITableViewDelegate, UITableViewDataSource {
         ) as? SearchAddressCell else {
             return UITableViewCell()
         }
-        cell.configurCell(model: suggestions[indexPath.row])
+        if let presenter = presenter {
+            cell.configurCell(model: presenter.suggestions[indexPath.row])
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let streeString = suggestions[indexPath.row].street_with_type ?? ""
-        let houseString = suggestions[indexPath.row].house ?? ""
+        guard let presenter = presenter else { return }
+        let streeString = presenter.suggestions[indexPath.row].street_with_type ?? ""
+        let houseString = presenter.suggestions[indexPath.row].house ?? ""
         let address = streeString + " " + houseString
-        let city = suggestions[indexPath.row].city ?? ""
-        if suggestions[indexPath.row].house != nil {
-            clouse?(address)
+        let city = presenter.suggestions[indexPath.row].city ?? ""
+        if presenter.suggestions[indexPath.row].house != nil {
+            delegate?.addressCollect(address: address)
             dismiss(animated: true)
         }
         else {
             searchBar.text = [city, address].joined(separator: " ")
-            postRequest(searchText:city + " " + address + " ")
+            presenter.getAddress(address: city + " " + address + " ")
         }
     }
 }
@@ -110,6 +117,20 @@ extension SearchAddressBottomSheet: UISearchBarDelegate {
     }
 
     @objc func delaySearch(with: String) {
-        self.postRequest(searchText: with)
+        presenter?.getAddress(address: with)
+    }
+}
+
+extension SearchAddressBottomSheet: SearchScreenViewProtocol {
+    var panScrollable: UIScrollView? {
+        return nil
+    }
+
+    func success() {
+        tableView.reloadData()
+    }
+
+    func falture(error: Error) {
+        print(error.localizedDescription)
     }
 }
